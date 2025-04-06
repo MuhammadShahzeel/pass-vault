@@ -74,7 +74,7 @@ const Manager = () => {
                   placeholder="Enter Password"
                   className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
                 />
-                <span onClick={showPassword} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-green-400 cursor-pointer transition duration-200">
+                <span onClick={showPassword} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-green-400 cursor-pointer transition duration-200">
                  {toggleEye ?  <FaEye className="text-xl" /> :  <FaEyeSlash className="text-xl" />}
                  
                  
