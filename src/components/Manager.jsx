@@ -4,6 +4,7 @@ import { MdOutlineVpnKey } from "react-icons/md";
 
 const Manager = () => {
   const [toggleEye, settoggleEye] = useState(true);
+  const [password, setPassword] = useState([]);
   const [form, setForm] = useState({
     site:"",
     username:"",
@@ -16,6 +17,7 @@ const Manager = () => {
     
   };
   const savePassword = () => {
+
     console.log(form);
     
 
