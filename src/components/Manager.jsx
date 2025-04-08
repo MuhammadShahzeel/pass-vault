@@ -37,9 +37,9 @@ const Manager = () => {
         <div className="px-8 py-8 text-center border-b border-slate-700">
           <div className="flex items-center justify-center gap-3 mb-2">
             <MdOutlineVpnKey className="text-4xl text-green-400" />
-            <span className="text-4xl font-bold text-green-400">PassVault</span>
+            <span className="text-4xl font-bold text-white">PassVault</span>
           </div>
-          <p className="text-slate-400">your own password manager</p>
+          <p className="text-slate-400">your personal password manager</p>
         </div>
 
         <div className="text-white p-8 space-y-8">
@@ -98,7 +98,7 @@ const Manager = () => {
           {/* Password List Section */}
           <div className="mt-10">
             <h2 className="text-xl font-semibold text-green-400 mb-6 flex items-center gap-2">
-              <MdOutlineVpnKey size={20} />
+            
               Your Passwords
             </h2>
             
