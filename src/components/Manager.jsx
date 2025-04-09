@@ -46,7 +46,7 @@ const Manager = () => {
           {/* Form Section */}
           <div className="space-y-6">
             <div className="grid grid-cols-1 gap-6">
-              <input
+              <input required
                 onChange={handleInputChange}
                 value={form.site}
                 name="site"
@@ -54,7 +54,8 @@ const Manager = () => {
                 placeholder="Enter website URL"
                 className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
               />
-              <input
+              <input required
+
                 onChange={handleInputChange}
                 value={form.username}
                 name="username"
@@ -63,7 +64,7 @@ const Manager = () => {
                 className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
               />
               <div className="relative">
-                <input
+                <input required
                   onChange={handleInputChange}
                   value={form.password}
                   name="password"
@@ -86,13 +87,18 @@ const Manager = () => {
           </div>
 
           <div className="flex justify-center mt-8">
-            <button
-              onClick={savePassword}
-              className="flex items-center gap-2 bg-green-400 hover:bg-green-500 text-slate-900 font-medium py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl active:bg-green-600 active:translate-y-0.5"
-            >
-              <FaPlus size={16} />
-              Add Password
-            </button>
+          <button
+  onClick={savePassword}
+  disabled={!form.site || !form.username || !form.password}
+  className={`flex items-center gap-2 ${
+    form.site && form.username && form.password
+      ? "bg-green-400 hover:bg-green-500"
+      : "bg-green-800 cursor-not-allowed"
+  } text-slate-900 font-medium py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl active:bg-green-600 active:translate-y-0.5`}
+>
+  <FaPlus size={16} />
+  Add Password
+</button>
           </div>
           
           {/* Password List Section */}
