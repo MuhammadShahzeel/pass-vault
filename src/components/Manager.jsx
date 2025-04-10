@@ -123,7 +123,7 @@ const Manager = () => {
                       <tbody>
                         {password.map((item, index) => (
                           <tr key={index} className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                            <td className="py-3 px-4 text-slate-300 "><a href={item.site} target="_blank">{item.site}</a></td>
+                            <td className="py-3 px-4 text-slate-300 "><a className="hover:text-green-400" href={item.site} target="_blank">{item.site}</a></td>
                             <td className="py-3 px-4 text-slate-300">{item.username}</td>
                             <td className="py-3 px-4 text-slate-300">{item.password}</td>
                           </tr>
