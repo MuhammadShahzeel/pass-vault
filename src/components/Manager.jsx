@@ -121,31 +121,15 @@ const Manager = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                          <td className="py-3 px-4 text-slate-300">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                          <td className="py-3 px-4 text-slate-300">Malcolm Lockyer</td>
-                          <td className="py-3 px-4 text-slate-300">1290</td>
-                        </tr>
-                        <tr className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                          <td className="py-3 px-4 text-slate-300">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                          <td className="py-3 px-4 text-slate-300">Malcolm Lockyer</td>
-                          <td className="py-3 px-4 text-slate-300">1290</td>
-                        </tr>
-                        <tr className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                          <td className="py-3 px-4 text-slate-300">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                          <td className="py-3 px-4 text-slate-300">Malcolm Lockyer</td>
-                          <td className="py-3 px-4 text-slate-300">1290</td>
-                        </tr>
-                        <tr className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                          <td className="py-3 px-4 text-slate-300">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                          <td className="py-3 px-4 text-slate-300">Malcolm Lockyer</td>
-                          <td className="py-3 px-4 text-slate-300">1290</td>
-                        </tr>
-                        <tr className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                          <td className="py-3 px-4 text-slate-300">The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                          <td className="py-3 px-4 text-slate-300">Malcolm Lockyer</td>
-                          <td className="py-3 px-4 text-slate-300">1290</td>
-                        </tr>
+                        {password.map((item, index) => (
+                          <tr key={index} className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
+                            <td className="py-3 px-4 text-slate-300 "><a href={item.site} target="_blank">{item.site}</a></td>
+                            <td className="py-3 px-4 text-slate-300">{item.username}</td>
+                            <td className="py-3 px-4 text-slate-300">{item.password}</td>
+                          </tr>
+                        ))}
+                    
+               
                       </tbody>
                     </table>
                 }
