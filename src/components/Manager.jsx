@@ -154,7 +154,7 @@ const Manager = () => {
         </div>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default Manager;
