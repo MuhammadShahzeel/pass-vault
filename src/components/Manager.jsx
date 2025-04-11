@@ -103,7 +103,7 @@ const Manager = () => {
           
           {/* Password List Section */}
           <div className="mt-10">
-            <h2 className="text-xl font-semibold text-green-400 mb-6 flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
             
               Your Passwords
             </h2>
