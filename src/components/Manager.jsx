@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaEye, FaPlus, FaEyeSlash } from "react-icons/fa6";
+import { FaEye, FaPlus, FaEyeSlash, FaCopy } from "react-icons/fa6";
 import { MdOutlineVpnKey } from "react-icons/md";
 
 const Manager = () => {
@@ -10,9 +10,11 @@ const Manager = () => {
     username: "",
     password: "",
   });
+  
   const showPassword = () => {
     settoggleEye(!toggleEye);
   };
+  
   const savePassword = () => {
     setPassword((prev) => {
       const updated = [...prev, form];
@@ -25,9 +27,15 @@ const Manager = () => {
       password: "",
     });
   };
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+  
+  const copyToClipboard = (text) => {
+    // Empty function for you to implement
+    console.log("Copy to clipboard:", text);
   };
 
   return (
@@ -55,7 +63,6 @@ const Manager = () => {
                 className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
               />
               <input required
-
                 onChange={handleInputChange}
                 value={form.username}
                 name="username"
@@ -87,31 +94,30 @@ const Manager = () => {
           </div>
 
           <div className="flex justify-center mt-8">
-          <button
-  onClick={savePassword}
-  disabled={!form.site || !form.username || !form.password}
-  className={`flex items-center gap-2 ${
-    form.site && form.username && form.password
-      ? "bg-green-400 hover:bg-green-500"
-      : "bg-green-800 cursor-not-allowed"
-  } text-slate-900 font-medium py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl active:bg-green-600 active:translate-y-0.5`}
->
-  <FaPlus size={16} />
-  Add Password
-</button>
+            <button
+              onClick={savePassword}
+              disabled={!form.site || !form.username || !form.password}
+              className={`flex items-center gap-2 ${
+                form.site && form.username && form.password
+                  ? "bg-green-400 hover:bg-green-500"
+                  : "bg-green-800 cursor-not-allowed"
+              } text-slate-900 font-medium py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl active:bg-green-600 active:translate-y-0.5`}
+            >
+              <FaPlus size={16} />
+              Add Password
+            </button>
           </div>
           
           {/* Password List Section */}
           <div className="mt-10">
             <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-            
               Your Passwords
             </h2>
             
             <div className="passwords mt-6 overflow-x-auto">
-                {password.length==0?
+                {password.length === 0 ? (
                     <div className="py-6 text-center text-slate-500 italic">No passwords saved yet</div>
-                   :
+                ) : (
                     <table className="w-full text-left border-collapse">
                       <thead>
                         <tr className="bg-slate-700 border-b border-slate-600">
@@ -123,16 +129,40 @@ const Manager = () => {
                       <tbody>
                         {password.map((item, index) => (
                           <tr key={index} className="border-b border-slate-700 hover:bg-slate-700/50 transition-colors">
-                            <td className="py-3 px-4 text-slate-300 "><a className="hover:text-green-400" href={item.site} target="_blank">{item.site}</a></td>
-                            <td className="py-3 px-4 text-slate-300">{item.username}</td>
-                            <td className="py-3 px-4 text-slate-300">{item.password}</td>
+                            <td className="py-3 px-4 text-slate-300">
+                              <a className="hover:text-green-400" href={item.site} target="_blank" rel="noopener noreferrer">
+                                {item.site}
+                              </a>
+                            </td>
+                            <td className="py-3 px-4 text-slate-300">
+                              <div className="flex items-center">
+                                <span>{item.username}</span>
+                                <button 
+                                  onClick={() => copyToClipboard(item.username)}
+                                  className="ml-2 text-slate-400 hover:text-green-400 transition-colors"
+                                  title="Copy username"
+                                >
+                                  <FaCopy size={16} />
+                                </button>
+                              </div>
+                            </td>
+                            <td className="py-3 px-4 text-slate-300">
+                              <div className="flex items-center">
+                                <span>{item.password}</span>
+                                <button 
+                                  onClick={() => copyToClipboard(item.password)}
+                                  className="ml-2 text-slate-400 hover:text-green-400 transition-colors"
+                                  title="Copy password"
+                                >
+                                  <FaCopy size={16} />
+                                </button>
+                              </div>
+                            </td>
                           </tr>
                         ))}
-                    
-               
                       </tbody>
                     </table>
-                }
+                )}
             </div>
           </div>
         </div>
