@@ -35,7 +35,11 @@ const Manager = () => {
   
   const copyToClipboard = (text) => {
     // Empty function for you to implement
-    console.log("Copy to clipboard:", text);
+    navigator.clipboard.writeText(text)
+      alert(`Copied to clipboard: ${text}`);
+  
+
+    
   };
 
   return (
