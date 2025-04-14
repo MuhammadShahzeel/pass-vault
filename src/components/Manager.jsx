@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaEye, FaPlus, FaEyeSlash, FaCopy } from "react-icons/fa6";
 import { MdOutlineVpnKey } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Manager = () => {
   const [toggleEye, settoggleEye] = useState(true);
@@ -35,8 +36,23 @@ const Manager = () => {
   
   const copyToClipboard = (text) => {
     // Empty function for you to implement
-    navigator.clipboard.writeText(text)
-      alert(`Copied to clipboard: ${text}`);
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success('Copied to clipboard.', {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        
+        });
+     
+    }).catch((err) => {
+      console.error("Failed to copy: ", err);
+      toast.error("Failed to copy.");
+    });
   
 
     
@@ -160,6 +176,19 @@ const Manager = () => {
                                 >
                                   <FaCopy size={16} />
                                 </button>
+                                <ToastContainer
+position="top-right"
+autoClose={4000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+
+/>
                               </div>
                             </td>
                           </tr>
