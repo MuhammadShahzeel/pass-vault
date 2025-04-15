@@ -188,14 +188,14 @@ const Manager = () => {
                               <div className="flex items-center space-x-3">
                                 <button 
                                   onClick={() => handleEdit(index)}
-                                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                                  className="text-slate-400 hover:text-green-400 transition-colors"
                                   title="Edit"
                                 >
                                   <FaEdit size={18} />
                                 </button>
                                 <button 
                                   onClick={() => handleDelete(index)}
-                                  className="text-red-400 hover:text-red-300 transition-colors"
+                                  className="text-slate-400 hover:text-green-400 transition-colors"
                                   title="Delete"
                                 >
                                   <FaTrash size={16} />
