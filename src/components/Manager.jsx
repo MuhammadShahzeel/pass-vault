@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaEye, FaPlus, FaEyeSlash, FaCopy } from "react-icons/fa6";
+import { FaEye, FaPlus, FaEyeSlash, FaCopy, FaEdit, FaTrash } from "react-icons/fa";
 import { MdOutlineVpnKey } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -35,7 +35,6 @@ const Manager = () => {
   };
   
   const copyToClipboard = (text) => {
-    // Empty function for you to implement
     navigator.clipboard.writeText(text).then(() => {
       toast.success('Copied to clipboard.', {
         position: "top-right",
@@ -46,16 +45,22 @@ const Manager = () => {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        
-        });
-     
+      });
     }).catch((err) => {
       console.error("Failed to copy: ", err);
       toast.error("Failed to copy.");
     });
-  
+  };
 
-    
+  // Empty functions for edit and delete actions
+  const handleEdit = (index) => {
+    // Empty function for you to implement
+    console.log("Edit item at index:", index);
+  };
+
+  const handleDelete = (index) => {
+    // Empty function for you to implement
+    console.log("Delete item at index:", index);
   };
 
   return (
@@ -144,6 +149,7 @@ const Manager = () => {
                           <th className="py-3 px-4 font-medium text-green-400">Site</th>
                           <th className="py-3 px-4 font-medium text-green-400">Username</th>
                           <th className="py-3 px-4 font-medium text-green-400">Password</th>
+                          <th className="py-3 px-4 font-medium text-green-400">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -176,19 +182,24 @@ const Manager = () => {
                                 >
                                   <FaCopy size={16} />
                                 </button>
-                                <ToastContainer
-position="top-right"
-autoClose={4000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick={false}
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="dark"
-
-/>
+                              </div>
+                            </td>
+                            <td className="py-3 px-4 text-slate-300">
+                              <div className="flex items-center space-x-3">
+                                <button 
+                                  onClick={() => handleEdit(index)}
+                                  className="text-blue-400 hover:text-blue-300 transition-colors"
+                                  title="Edit"
+                                >
+                                  <FaEdit size={18} />
+                                </button>
+                                <button 
+                                  onClick={() => handleDelete(index)}
+                                  className="text-red-400 hover:text-red-300 transition-colors"
+                                  title="Delete"
+                                >
+                                  <FaTrash size={16} />
+                                </button>
                               </div>
                             </td>
                           </tr>
@@ -200,6 +211,18 @@ theme="dark"
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   ); 
 };
