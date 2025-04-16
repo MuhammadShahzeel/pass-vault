@@ -19,8 +19,10 @@ const Manager = () => {
   
   const savePassword = () => {
     setPassword((prev) => {
-      const updated = [...prev, form];
+      const updated = [...prev, {...form, id: uuidv4()}];
       console.log(updated);
+      
+     
       return updated;
     });
     setForm({
@@ -28,6 +30,9 @@ const Manager = () => {
       username: "",
       password: "",
     });
+  };
+  const deletePassword = (id) => {
+    setPassword((prev) => prev.filter(item => item.id !== id));
   };
   
   const handleInputChange = (e) => {
@@ -59,10 +64,7 @@ const Manager = () => {
     console.log("Edit item at index:", index);
   };
 
-  const handleDelete = (index) => {
-    // Empty function for you to implement
-    console.log("Delete item at index:", index);
-  };
+
 
   return (
     <div className="flex-1 flex items-center justify-center bg-slate-900 pt-10 pb-16">
@@ -195,7 +197,7 @@ const Manager = () => {
                                   <FaEdit size={18} />
                                 </button>
                                 <button 
-                                  onClick={() => handleDelete(index)}
+                                  onClick={() => deletePassword(item.id)}
                                   className="text-slate-400 hover:text-green-400 transition-colors"
                                   title="Delete"
                                 >
