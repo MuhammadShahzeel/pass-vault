@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FaEye, FaPlus, FaEyeSlash, FaCopy, FaEdit, FaTrash } from "react-icons/fa";
 import { MdOutlineVpnKey } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 const Manager = () => {
   const [toggleEye, settoggleEye] = useState(true);
