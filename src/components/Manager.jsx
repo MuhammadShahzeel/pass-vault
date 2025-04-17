@@ -18,13 +18,13 @@ const Manager = () => {
   };
   
   const savePassword = () => {
-    setPassword((prev) => {
-      const updated = [...prev, {...form, id: uuidv4()}];
-      console.log(updated);
+    setPassword(prev => [...prev, {...form, id: uuidv4()}]
+     
+      
       
      
-      return updated;
-    });
+  
+    );
     setForm({
       site: "",
       username: "",
@@ -32,7 +32,17 @@ const Manager = () => {
     });
   };
   const deletePassword = (id) => {
-    setPassword((prev) => prev.filter(item => item.id !== id));
+    setPassword(prev => prev.filter(item => item.id !== id));
+  };
+  const editPassword = (id) => {
+    const selectedItem = password.filter(item => item.id === id)[0];
+    setForm(selectedItem)
+    setPassword(prev =>prev.filter(item => item.id !== id))
+
+
+    
+    
+    
   };
   
   const handleInputChange = (e) => {
@@ -58,11 +68,7 @@ const Manager = () => {
     });
   };
 
-  // Empty functions for edit and delete actions
-  const handleEdit = (index) => {
-    // Empty function for you to implement
-    console.log("Edit item at index:", index);
-  };
+
 
 
 
@@ -82,7 +88,7 @@ const Manager = () => {
           {/* Form Section */}
           <div className="space-y-6">
             <div className="grid grid-cols-1 gap-6">
-              <input required
+              <input 
                 onChange={handleInputChange}
                 value={form.site}
                 name="site"
@@ -90,7 +96,7 @@ const Manager = () => {
                 placeholder="Enter website URL"
                 className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
               />
-              <input required
+              <input 
                 onChange={handleInputChange}
                 value={form.username}
                 name="username"
@@ -99,7 +105,7 @@ const Manager = () => {
                 className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
               />
               <div className="relative">
-                <input required
+                <input 
                   onChange={handleInputChange}
                   value={form.password}
                   name="password"
@@ -190,7 +196,7 @@ const Manager = () => {
                             <td className="py-3 px-4 text-slate-300">
                               <div className="flex items-center space-x-3">
                                 <button 
-                                  onClick={() => handleEdit(index)}
+                                  onClick={() => editPassword(item.id)}
                                   className="text-slate-400 hover:text-green-400 transition-colors"
                                   title="Edit"
                                 >
