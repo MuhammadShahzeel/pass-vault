@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <div className="logo flex items-center gap-2 text-green-400 font-bold text-xl">
           <MdOutlineVpnKey className="text-2xl" />
-          <span className="text-white">PassVaul</span>
+          <span className="text-white">PassVault</span>
         </div>
         
         <div className="flex items-center ">
