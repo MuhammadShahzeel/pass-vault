@@ -43,7 +43,7 @@ const Manager = () => {
   };
   const deletePassword = (id) => {
     setPassword(prev => prev.filter(item => item.id !== id));
-    toast.warn('Password .', {
+    toast.warn('Password deleted.', {
       position: "top-right",
       autoClose: 4000,
       hideProgressBar: false,
