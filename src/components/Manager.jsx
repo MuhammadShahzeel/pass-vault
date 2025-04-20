@@ -33,8 +33,8 @@ const Manager = () => {
     });
     toast.success('Password saved.', {
       position: "top-right",
-      autoClose: 4000,
-      hideProgressBar: false,
+      autoClose: 2000,
+      hideProgressBar: true,
       closeOnClick: false,
       pauseOnHover: true,
       draggable: true,
@@ -47,8 +47,8 @@ const Manager = () => {
     setPassword(prev => prev.filter(item => item.id !== id));
     toast.warn('Password deleted.', {
       position: "top-right",
-      autoClose: 4000,
-      hideProgressBar: false,
+      autoClose: 2000,
+      hideProgressBar: true,
       closeOnClick: false,
       pauseOnHover: true,
       draggable: true,
@@ -77,8 +77,8 @@ const Manager = () => {
     navigator.clipboard.writeText(text).then(() => {
       toast.success('Copied to clipboard.', {
         position: "top-right",
-        autoClose: 4000,
-        hideProgressBar: false,
+        autoClose: 2000,
+        hideProgressBar: true,
         closeOnClick: false,
         pauseOnHover: true,
         draggable: true,
