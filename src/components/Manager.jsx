@@ -30,9 +30,29 @@ const Manager = () => {
       username: "",
       password: "",
     });
+    toast.success('Password saved.', {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
   const deletePassword = (id) => {
     setPassword(prev => prev.filter(item => item.id !== id));
+    toast.warn('Password .', {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
   const editPassword = (id) => {
     const selectedItem = password.filter(item => item.id === id)[0];
