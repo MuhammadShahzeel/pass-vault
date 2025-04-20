@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const Manager = () => {
   const [toggleEye, settoggleEye] = useState(true);
   const [password, setPassword] = useState([]);
+  const [updateBtn, setuodateBtn] = useState(false);
   const [form, setForm] = useState({
     site: "",
     username: "",
@@ -40,6 +41,7 @@ const Manager = () => {
       progress: undefined,
       theme: "dark",
     });
+    setuodateBtn(false)
   };
   const deletePassword = (id) => {
     setPassword(prev => prev.filter(item => item.id !== id));
@@ -58,6 +60,7 @@ const Manager = () => {
     const selectedItem = password.filter(item => item.id === id)[0];
     setForm(selectedItem)
     setPassword(prev =>prev.filter(item => item.id !== id))
+    setuodateBtn(true)
 
 
     
@@ -158,7 +161,7 @@ const Manager = () => {
               } text-slate-900 font-medium py-3 px-8 rounded-lg transition duration-200 shadow-lg hover:shadow-xl active:bg-green-600 active:translate-y-0.5`}
             >
               <FaPlus size={16} />
-              Add Password
+              {updateBtn ? "Update Password" : "Save Password"}
             </button>
           </div>
           
