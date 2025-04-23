@@ -5,7 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 
 const Manager = () => {
-  const [toggleEye, settoggleEye] = useState(true);
+  const [visibility, setVisibility] = useState({
+    inputPassword: false,
+    savedPasswords: false
+  });
   const [password, setPassword] = useState([]);
   const [updateBtn, setupdateBtn] = useState(false);
   const [form, setForm] = useState({
@@ -14,47 +17,54 @@ const Manager = () => {
     password: "",
   });
   
-  const showPassword = () => {
-    settoggleEye(!toggleEye);
+  const toggleInputVisibility = () => {
+    setVisibility(prev => ({
+      ...prev,
+      inputPassword: !prev.inputPassword
+    }));
+  };
+  
+  const toggleSavedVisibility = () => {
+    setVisibility(prev => ({
+      ...prev,
+      savedPasswords: !prev.savedPasswords
+    }));
   };
   
   const savePassword = () => {
-    setPassword(prev => [...prev, {...form, id: uuidv4()}]
-     
-      
-      
-     
-  
-    );
+    setPassword(prev => [...prev, {...form, id: uuidv4()}]);
     setForm({
       site: "",
       username: "",
       password: "",
     });
-    updateBtn?
-
-    toast.success('Password updated.', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    }):
-    toast.success('Password saved.', {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
-    setupdateBtn(false)
+    
+    if (updateBtn) {
+      toast.success('Password updated.', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      toast.success('Password saved.', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+    setupdateBtn(false);
   };
+  
   const deletePassword = (id) => {
     setPassword(prev => prev.filter(item => item.id !== id));
     toast.warn('Password deleted.', {
@@ -68,16 +78,12 @@ const Manager = () => {
       theme: "dark",
     });
   };
+  
   const editPassword = (id) => {
     const selectedItem = password.filter(item => item.id === id)[0];
-    setForm(selectedItem)
-    setPassword(prev =>prev.filter(item => item.id !== id))
-    setupdateBtn(true)
-
-
-    
-    
-    
+    setForm(selectedItem);
+    setPassword(prev => prev.filter(item => item.id !== id));
+    setupdateBtn(true);
   };
   
   const handleInputChange = (e) => {
@@ -102,10 +108,6 @@ const Manager = () => {
       toast.error("Failed to copy.");
     });
   };
-
-
-
-
 
   return (
     <div className="flex-1 flex items-center justify-center bg-slate-900 pt-10 pb-16">
@@ -144,18 +146,18 @@ const Manager = () => {
                   onChange={handleInputChange}
                   value={form.password}
                   name="password"
-                  type={toggleEye ? "password" : "text"}
+                  type={visibility.inputPassword ? "text" : "password"}
                   placeholder="Enter Password"
                   className="w-full bg-slate-700 rounded-lg px-5 py-4 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200 border border-slate-600/20"
                 />
                 <span
-                  onClick={showPassword}
+                  onClick={toggleInputVisibility}
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-green-400 cursor-pointer transition duration-200"
                 >
-                  {toggleEye ? (
-                    <FaEye className="text-xl" />
-                  ) : (
+                  {visibility.inputPassword ? (
                     <FaEyeSlash className="text-xl" />
+                  ) : (
+                    <FaEye className="text-xl" />
                   )}
                 </span>
               </div>
@@ -218,7 +220,7 @@ const Manager = () => {
                             </td>
                             <td className="py-3 px-4 text-slate-300">
                               <div className="flex items-center">
-                                <span>{item.password}</span>
+                                <span>{visibility.savedPasswords ? item.password : "•••••"}</span>
                                 <button 
                                   onClick={() => copyToClipboard(item.password)}
                                   className="ml-2 text-slate-400 hover:text-green-400 transition-colors"
@@ -230,6 +232,16 @@ const Manager = () => {
                             </td>
                             <td className="py-3 px-4 text-slate-300">
                               <div className="flex items-center space-x-3">
+                                <button 
+                                  onClick={toggleSavedVisibility}
+                                  className="text-slate-400 hover:text-green-400 transition-colors"
+                                >
+                                  {visibility.savedPasswords ? 
+                                    <FaEyeSlash size={18} />
+                                   : 
+                                    <FaEye size={18} />
+                                  }
+                                </button>
                                 <button 
                                   onClick={() => editPassword(item.id)}
                                   className="text-slate-400 hover:text-green-400 transition-colors"
