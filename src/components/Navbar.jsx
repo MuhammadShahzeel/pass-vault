@@ -12,7 +12,7 @@ const Navbar = () => {
         
         <div className="flex items-center ">
           <a 
-            href="https://github.com/yourusername/passvault" 
+            href="https://github.com/MuhammadShahzeel/pass-vault" 
             target="_blank" 
             rel="noopener noreferrer"
             className=" flex items-center gap-1 bg-green-400 hover:bg-green-500 text-slate-900 font-medium py-1.5 px-4 rounded-md text-sm transition duration-200 shadow hover:shadow-md active:bg-green-600 active:translate-y-0.5"

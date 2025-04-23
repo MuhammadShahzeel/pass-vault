@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 const Manager = () => {
   const [toggleEye, settoggleEye] = useState(true);
   const [password, setPassword] = useState([]);
-  const [updateBtn, setuodateBtn] = useState(false);
+  const [updateBtn, setupdateBtn] = useState(false);
   const [form, setForm] = useState({
     site: "",
     username: "",
@@ -31,6 +31,18 @@ const Manager = () => {
       username: "",
       password: "",
     });
+    updateBtn?
+
+    toast.success('Password updated.', {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    }):
     toast.success('Password saved.', {
       position: "top-right",
       autoClose: 2000,
@@ -41,7 +53,7 @@ const Manager = () => {
       progress: undefined,
       theme: "dark",
     });
-    setuodateBtn(false)
+    setupdateBtn(false)
   };
   const deletePassword = (id) => {
     setPassword(prev => prev.filter(item => item.id !== id));
@@ -60,7 +72,7 @@ const Manager = () => {
     const selectedItem = password.filter(item => item.id === id)[0];
     setForm(selectedItem)
     setPassword(prev =>prev.filter(item => item.id !== id))
-    setuodateBtn(true)
+    setupdateBtn(true)
 
 
     
